@@ -77,7 +77,6 @@ Example Store Team`);
       );
       setSelectedText('');
       setCurrentVariableId(null);
-      toast.success("Selection applied to variable!");
     } else {
       toast.error("Please select text from the email content first");
     }
@@ -128,7 +127,6 @@ Example Store Team`);
     }
     
     setIsWebhookConfigured(true);
-    toast.success("Webhook configured successfully!");
   };
   
   const handleSaveRules = () => {
@@ -137,8 +135,7 @@ Example Store Team`);
       toast.error(`Some variables don't have values: ${emptyVariables.map(v => v.name).join(', ')}`);
       return;
     }
-    
-    toast.success("Parsing rules saved successfully!");
+    // Success indicator will be visual, not a toast notification
   };
   
   const getHighlightedContent = () => {
@@ -175,12 +172,12 @@ Example Store Team`);
   return (
     <div className="overflow-hidden">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="mb-8 text-center"
+        transition={{ duration: 0.3 }}
+        className="mb-4 text-center"
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <h2 className="text-2xl md:text-3xl font-bold mb-2">
           Define <span className="text-primary">Parsing Rules</span> Visually
         </h2>
         <p className="text-lg text-surface-600 dark:text-surface-300 max-w-2xl mx-auto">
@@ -190,10 +187,10 @@ Example Store Team`);
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="card-neu"
+          transition={{ duration: 0.3, delay: 0.1 }}
+          className="card-compact shadow-sm"
         >
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
@@ -218,7 +215,7 @@ Amount: $89.95
 
 Expected delivery: 3-5 business days
 
-Thank you,
+                className="text-xs px-2 py-1 rounded bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 transition-all-sm"
 Example Shipping Team`);
                 }}
                 className="text-xs px-2 py-1 rounded bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600"
@@ -233,13 +230,13 @@ Example Shipping Team`);
           </div>
           
           <div className="relative">
-            <textarea 
+            <textarea
               ref={emailContentRef}
               value={emailContent}
               onChange={(e) => setEmailContent(e.target.value)}
               onMouseUp={handleTextSelect}
               onKeyUp={handleTextSelect}
-              className="w-full h-[400px] font-mono text-sm p-4 border border-surface-200 dark:border-surface-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none bg-white dark:bg-surface-900"
+              className="w-full h-[350px] font-mono text-sm p-3 border border-surface-200 dark:border-surface-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none bg-white dark:bg-surface-900 transition-all-sm"
             />
             
             {selectedText && (
@@ -252,7 +249,7 @@ Example Shipping Team`);
                   {currentVariableId ? (
                     <button
                       onClick={() => handleApplySelection(currentVariableId)}
-                      className="text-xs flex items-center gap-1 px-2 py-1 bg-primary text-white rounded hover:bg-primary-dark"
+                    >
                     >
                       <CheckIcon size={14} /> Apply
                     </button>
@@ -268,9 +265,9 @@ Example Shipping Team`);
         </motion.div>
         
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
+          initial={{ opacity: 0, x: 10 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
           className="flex flex-col gap-8"
         >
           <div className="card-neu">
@@ -281,7 +278,7 @@ Example Shipping Team`);
               </div>
               <button
                 onClick={addVariable}
-                className="p-2 rounded-full bg-primary/10 dark:bg-primary/20 hover:bg-primary/20 dark:hover:bg-primary/30 text-primary"
+                className="p-1.5 rounded-full bg-primary/10 dark:bg-primary/20 hover:bg-primary/20 dark:hover:bg-primary/30 text-primary transition-all-sm"
               >
                 <PlusIcon size={18} />
               </button>
@@ -291,7 +288,7 @@ Example Shipping Team`);
               {variables.map((variable) => (
                 <div 
                   key={variable.id}
-                  className="border border-surface-200 dark:border-surface-700 rounded-lg p-3 bg-white dark:bg-surface-800"
+                  className="border border-surface-200 dark:border-surface-700 rounded-lg p-2 bg-white dark:bg-surface-800 transition-all-sm"
                 >
                   <div className="flex flex-wrap gap-3 mb-2">
                     <div className="flex-1 min-w-[120px]">
@@ -303,7 +300,7 @@ Example Shipping Team`);
                         type="text"
                         value={variable.name}
                         onChange={(e) => updateVariableName(variable.id, e.target.value)}
-                        className="w-full px-2 py-1 text-sm border border-surface-200 dark:border-surface-700 rounded focus:ring-1 focus:ring-primary focus:border-transparent bg-white dark:bg-surface-900"
+                        className="w-full px-2 py-1 text-sm border border-surface-200 dark:border-surface-700 rounded focus:ring-1 focus:ring-primary focus:border-transparent bg-white dark:bg-surface-900 transition-all-sm"
                       />
                     </div>
                     
@@ -315,7 +312,7 @@ Example Shipping Team`);
                         id={`type-${variable.id}`}
                         value={variable.type}
                         onChange={(e) => updateVariableType(variable.id, e.target.value)}
-                        className="w-full px-2 py-1 text-sm border border-surface-200 dark:border-surface-700 rounded focus:ring-1 focus:ring-primary focus:border-transparent bg-white dark:bg-surface-900"
+                        className="w-full px-2 py-1 text-sm border border-surface-200 dark:border-surface-700 rounded focus:ring-1 focus:ring-primary focus:border-transparent bg-white dark:bg-surface-900 transition-all-sm"
                       >
                         <option value="string">Text</option>
                         <option value="number">Number</option>
@@ -329,7 +326,7 @@ Example Shipping Team`);
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => setCurrentVariableId(variable.id)}
-                        className={`px-2 py-1 text-xs rounded ${currentVariableId === variable.id 
+                        className={`px-2 py-1 text-xs rounded transition-all-sm ${currentVariableId === variable.id 
                           ? 'bg-primary text-white' 
                           : 'bg-surface-100 dark:bg-surface-700 hover:bg-surface-200 dark:hover:bg-surface-600'}`}
                       >
@@ -337,7 +334,7 @@ Example Shipping Team`);
                       </button>
                       
                       {variable.value && (
-                        <div className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full font-medium">
+                        <div className="text-xs px-1.5 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full font-medium">
                           Set
                         </div>
                       )}
@@ -352,7 +349,7 @@ Example Shipping Team`);
                   </div>
                   
                   {variable.value && (
-                    <div className="mt-2 text-xs bg-surface-100 dark:bg-surface-700 p-2 rounded font-mono">
+                    <div className="mt-1.5 text-xs bg-surface-100 dark:bg-surface-700 p-1.5 rounded font-mono">
                       {variable.value}
                     </div>
                   )}
@@ -363,7 +360,7 @@ Example Shipping Team`);
             <div className="mt-4 pt-4 border-t border-surface-200 dark:border-surface-700">
               <button
                 onClick={handleSaveRules}
-                className="w-full btn-secondary flex items-center justify-center gap-2"
+                className="w-full btn-secondary flex items-center justify-center gap-2 transition-all-sm"
               >
                 <SaveIcon size={18} /> Save Parsing Rules
               </button>
@@ -371,7 +368,7 @@ Example Shipping Team`);
           </div>
           
           <div className="card-neu">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-3">
               <SendIcon className="text-accent" size={22} />
               <h3 className="text-xl font-bold">Webhook Configuration</h3>
             </div>
@@ -386,21 +383,21 @@ Example Shipping Team`);
                 value={webhookUrl}
                 onChange={(e) => setWebhookUrl(e.target.value)}
                 placeholder="https://webhook.site/your-unique-url"
-                className="input"
+                disabled={isWebhookConfigured}
                 disabled={isWebhookConfigured}
               />
             </div>
             
-            {isWebhookConfigured ? (
+              <div className="mb-3 p-2 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-lg flex items-center gap-2 text-sm">
               <div className="mb-4 p-3 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-lg flex items-center gap-2">
                 <CheckIcon size={18} />
                 <span>Webhook configured successfully!</span>
               </div>
             ) : (
               <button
-                onClick={handleSubmitWebhook}
+                className="w-full btn-accent flex items-center justify-center gap-2 transition-all-sm"
                 className="w-full btn-accent flex items-center justify-center gap-2"
-              >
+                <CommandIcon size={16} /> Configure Webhook
                 <CommandIcon size={18} /> Configure Webhook
               </button>
             )}
@@ -410,7 +407,7 @@ Example Shipping Team`);
                 <p>Your parsed data will be sent to the configured webhook whenever a new email is received.</p>
                 <div className="mt-2 p-3 bg-surface-100 dark:bg-surface-700 rounded-lg">
                   <div className="text-xs font-medium mb-1">Payload Preview:</div>
-                  <pre className="text-xs font-mono overflow-x-auto p-2 bg-white dark:bg-surface-800 rounded border border-surface-200 dark:border-surface-600">
+{`{
 {`{
   "timestamp": "${new Date().toISOString()}",
   "email": {
@@ -430,17 +427,17 @@ ${variables.map(v => `    "${v.name}": "${v.value || '(not set)'}"`).join(',\n')
       </div>
       
       {variables.some(v => v.value) && (
-        <motion.div
+          initial={{ opacity: 0, y: 10 }}
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.3, delay: 0.3 }}
+          className="mt-5 card-compact"
           className="mt-8 card"
-        >
+          <h3 className="text-lg font-bold mb-2">
           <h3 className="text-xl font-bold mb-4">
             Email Preview with Highlighted Variables
           </h3>
           
-          <div 
+            className="font-mono text-sm p-3 border border-surface-200 dark:border-surface-700 rounded-lg bg-white dark:bg-surface-900 whitespace-pre-wrap transition-all-sm"
             className="font-mono text-sm p-4 border border-surface-200 dark:border-surface-700 rounded-lg bg-white dark:bg-surface-900 whitespace-pre-wrap"
             dangerouslySetInnerHTML={{ __html: getHighlightedContent() }}
           />

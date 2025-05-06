@@ -29,8 +29,9 @@
 }
 
 @layer components {
+  /* Reduced padding in buttons for more compact design */
   .btn {
-    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100;
+    @apply px-3 py-1.5 rounded-lg font-medium transition-all duration-200 transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100;
   }
   
   .btn-primary {
@@ -48,16 +49,19 @@
   .btn-outline {
     @apply btn bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white focus:ring-primary;
   }
+  /* Made border thinner for a more compact look */
   
-  .input {
+    @apply btn bg-transparent border border-primary text-primary hover:bg-primary hover:text-white focus:ring-primary;
     @apply w-full px-4 py-2 transition duration-200 border border-surface-300 dark:border-surface-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-surface-800;
   }
+  /* Reduced input padding for compact design */
   
-  .card {
+    @apply w-full px-3 py-1.5 transition duration-200 border border-surface-300 dark:border-surface-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-surface-800;
     @apply bg-white dark:bg-surface-800 rounded-xl shadow-card dark:shadow-neu-dark p-4 md:p-6;
   }
+  /* Reduced card padding for more compact look */
   
-  .card-neu {
+    @apply bg-white dark:bg-surface-800 rounded-xl shadow-card dark:shadow-neu-dark p-3 md:p-4;
     @apply bg-surface-100 dark:bg-surface-800 rounded-xl shadow-neu-light dark:shadow-neu-dark p-4 md:p-6;
   }
 }
@@ -81,5 +85,23 @@
   
   .animation-delay-1000 {
     animation-delay: 1000ms;
+  }
+  
+  /* Add transition classes for subtle animations */
+  .transition-all-sm {
+    @apply transition-all duration-150 ease-in-out;
+  }
+  
+  .transition-all-md {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .transition-transform-sm {
+    @apply transition-transform duration-150 ease-in-out;
+  }
+  
+  /* Compact card design for improved space usage */
+  .card-compact {
+    @apply bg-white dark:bg-surface-800 rounded-lg shadow-sm p-2 md:p-3;
   }
 }
