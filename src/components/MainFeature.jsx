@@ -1,4 +1,11 @@
 import { useState, useRef } from 'react';
+        <motion.div
+                      className="px-2 py-1 text-xs rounded bg-primary text-white flex items-center gap-1"
+                    >
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.3 }}
+        >
+    if (selectedText) {
       setVariables(
         variables.map(variable =>
           variable.id === id 
@@ -9,12 +16,10 @@ import { useState, useRef } from 'react';
               selectionEnd: selection.end
           } : variable
         )
-      );
-import { toast } from 'react-toastify';
-
-export default function MainFeature() {
-  const [emailContent, setEmailContent] = useState(`From: orders@example.com
-Dear Customer,
+                onClick={handleSubmitWebhook}
+                className="w-full btn-accent flex items-center justify-center gap-2 transition-all-sm"
+              >
+                <CommandIcon size={18} /> Configure Webhook
 
 Thank you for your order! Your order #12345 has shipped and is on its way.
 
@@ -23,8 +28,8 @@ Thank you for your order! Your order #12345 has shipped and is on its way.
 Expected delivery date: June 21, 2023
 
 Thank you for shopping with us!
-
-Best regards,
+                  <pre className="text-xs overflow-auto">
+{`{
 Example Store Team`);
 
   const [variables, setVariables] = useState([
