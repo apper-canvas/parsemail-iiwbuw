@@ -1,12 +1,14 @@
+            </div>
+          </div>
 import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import {
-  Check as CheckIcon,
-  Code as CodeIcon,
-  Plus as PlusIcon,
+                    </div>
+              ))}
+            </div>
+        <motion.div
+            </div>
+          </div>
   Trash as TrashIcon,
-  Terminal as CommandIcon,
+                  </div>
   Save as SaveIcon,
   Mail as EmailIcon,
   Send as SendIcon
@@ -18,35 +20,33 @@ To: you@parsemail.app
 Subject: Shipping Confirmation
 
 Dear Valued Customer,
+            </div>
 
 Your package has been shipped!
 
-Order: #A78945
 Tracking: USPS1234567890
 Amount: $89.95
 
 Expected delivery: 3-5 business days`);
+              <button
 
   const [variables, setVariables] = useState([
     { id: 1, name: 'orderNumber', type: 'number', value: '', selectionStart: 0, selectionEnd: 0 },
-    { id: 2, name: 'totalAmount', type: 'currency', value: '', selectionStart: 0, selectionEnd: 0 }
   ]);
 
+            )}
   const [nextId, setNextId] = useState(3);
-  const [selectedText, setSelectedText] = useState('');
   const [currentVariableId, setCurrentVariableId] = useState(null);
   const [selection, setSelection] = useState({ start: 0, end: 0 });
   const [webhookUrl, setWebhookUrl] = useState('https://webhook.site/your-unique-url');
   const [isWebhookConfigured, setIsWebhookConfigured] = useState(false);
 
-  const emailContentRef = useRef(null);
 
   const handleTextSelect = () => {
     if (emailContentRef.current) {
       const textarea = emailContentRef.current;
       const selStart = textarea.selectionStart;
       const selEnd = textarea.selectionEnd;
-
       if (selStart !== selEnd) {
         const selected = textarea.value.substring(selStart, selEnd);
         setSelectedText(selected);
@@ -56,19 +56,19 @@ Expected delivery: 3-5 business days`);
   };
 
   const handleApplySelection = (id) => {
-    if (selectedText) {
+      </div>
       setVariables(
-        variables.map(variable =>
           variable.id === id
+        <motion.div
             ? {
                 ...variable,
                 value: selectedText,
-                selectionStart: selection.start,
-                selectionEnd: selection.end
+          className="mt-8 card"
+        >
             } : variable
         )
+          </h3>
       );
-      setSelectedText('');
       setCurrentVariableId(null);
     } else {
       toast.error("Please select text from the email content first");
