@@ -1,22 +1,12 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import getIcon from '../utils/iconUtils';
-
-export default function MainFeature() {
-  const EmailIcon = getIcon('Mail');
-  const CodeIcon = getIcon('Code');
-  const SaveIcon = getIcon('Save');
-  const PlusIcon = getIcon('Plus');
-  const TrashIcon = getIcon('Trash');
-  const SendIcon = getIcon('Send');
-  const CheckIcon = getIcon('Check');
-  const CommandIcon = getIcon('Command');
-
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-8 card-compact"
+          <h3 className="text-lg font-bold mb-2">
+          <div className="font-mono text-sm p-3 border border-surface-200 dark:border-surface-700 rounded-lg bg-white dark:bg-surface-900 whitespace-pre-wrap transition-all-sm"
   const [emailContent, setEmailContent] = useState(`From: orders@example.com
-To: you@parsemail.app
-Subject: Your Order #12345 has shipped!
-
+              >
+                <CommandIcon size={18} /> Configure Webhook
 Dear Customer,
 
 Thank you for your order! Your order #12345 has shipped and is on its way.
