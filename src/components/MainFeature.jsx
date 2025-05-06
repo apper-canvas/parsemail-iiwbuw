@@ -1,20 +1,29 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-8 card-compact"
-          <h3 className="text-lg font-bold mb-2">
-          <div className="font-mono text-sm p-3 border border-surface-200 dark:border-surface-700 rounded-lg bg-white dark:bg-surface-900 whitespace-pre-wrap transition-all-sm"
+                className="w-full px-3 py-1.5 transition duration-200 border border-surface-300 dark:border-surface-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-surface-800" />
+            {isWebhookConfigured ? (
+import { 
+  Mail as EmailIcon,
+  Code as CodeIcon,
+  Plus as PlusIcon,
+  Trash as TrashIcon,
+  Save as SaveIcon,
+  Send as SendIcon,
+  Check as CheckIcon,
+  Command as CommandIcon 
+} from 'lucide-react';
+import { toast } from 'react-toastify';
+
+export default function MainFeature() {
   const [emailContent, setEmailContent] = useState(`From: orders@example.com
-              >
-                <CommandIcon size={18} /> Configure Webhook
 Dear Customer,
 
 Thank you for your order! Your order #12345 has shipped and is on its way.
 
-Order Details:
-- Order Number: 12345
-- Order Date: 2023-06-15
-- Total Amount: $127.99
+                onClick={handleSubmitWebhook}
+                className="w-full btn-accent flex items-center justify-center gap-2 transition-all-sm"
+              >
+                <CommandIcon size={18} /> Configure Webhook
 - Tracking Number: TRK789012345
 
 Expected delivery date: June 21, 2023
@@ -23,15 +32,16 @@ Thank you for shopping with us!
 
 Best regards,
 Example Store Team`);
-
-  const [variables, setVariables] = useState([
+                  <pre className="text-xs overflow-x-auto">
+{`{
     { id: 1, name: 'orderNumber', type: 'number', value: '', selectionStart: 0, selectionEnd: 0 },
     { id: 2, name: 'totalAmount', type: 'currency', value: '', selectionStart: 0, selectionEnd: 0 },
   ]);
   const [nextId, setNextId] = useState(3);
   const [selectedText, setSelectedText] = useState('');
   const [currentVariableId, setCurrentVariableId] = useState(null);
-  const [selection, setSelection] = useState({ start: 0, end: 0 });
+    ${variables.map(v => `"${v.name}": "${v.value || '(not set)'}"`)
+      .join(',\n    ')}
   const [webhookUrl, setWebhookUrl] = useState('https://webhook.site/your-unique-url');
   const [isWebhookConfigured, setIsWebhookConfigured] = useState(false);
   
@@ -43,25 +53,25 @@ Example Store Team`);
       const selStart = textarea.selectionStart;
       const selEnd = textarea.selectionEnd;
       
+        <motion.div
       if (selStart !== selEnd) {
-        const selected = emailContent.substring(selStart, selEnd);
+          animate={{ opacity: 1, y: 0 }}
         setSelectedText(selected);
         setSelection({ start: selStart, end: selEnd });
-      }
-    }
+        >
   };
   
   const handleApplySelection = (id) => {
     if (selectedText) {
+          <div
       setVariables(
-        variables.map(variable => 
           variable.id === id 
             ? { 
                 ...variable, 
                 value: selectedText,
                 selectionStart: selection.start,
                 selectionEnd: selection.end
-              } 
+}
             : variable
         )
       );
