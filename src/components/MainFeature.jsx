@@ -1,15 +1,15 @@
 import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
-import {
-  Mail as EmailIcon,
-  Code as CodeIcon,
-  Plus as PlusIcon,
-  Trash as TrashIcon,
-  Save as SaveIcon,
-  Send as SendIcon,
-  Check as CheckIcon,
-  Command as CommandIcon
-} from 'lucide-react';
+      setVariables(
+        variables.map(variable =>
+          variable.id === id 
+          ? { 
+              ...variable, 
+              value: selectedText,
+              selectionStart: selection.start,
+              selectionEnd: selection.end
+          } : variable
+        )
+      );
 import { toast } from 'react-toastify';
 
 export default function MainFeature() {
