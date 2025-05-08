@@ -1,14 +1,11 @@
-            </div>
-          </div>
 import { useState, useRef } from 'react';
-                    </div>
-              ))}
-            </div>
-        <motion.div
-            </div>
-          </div>
+import { motion } from 'framer-motion';
+import { 
+  Check as CheckIcon,
+  Code as CodeIcon,
+  Command as CommandIcon,
+  Plus as PlusIcon,
   Trash as TrashIcon,
-                  </div>
   Save as SaveIcon,
   Mail as EmailIcon,
   Send as SendIcon
@@ -22,7 +19,6 @@ Subject: Shipping Confirmation
 Dear Valued Customer,
             </div>
 
-Your package has been shipped!
 
 Tracking: USPS1234567890
 Amount: $89.95
@@ -30,18 +26,19 @@ Amount: $89.95
 Expected delivery: 3-5 business days`);
               <button
 
-  const [variables, setVariables] = useState([
     { id: 1, name: 'orderNumber', type: 'number', value: '', selectionStart: 0, selectionEnd: 0 },
   ]);
 
+    { id: 2, name: 'trackingId', type: 'string', value: '', selectionStart: 0, selectionEnd: 0 },
             )}
-  const [nextId, setNextId] = useState(3);
-  const [currentVariableId, setCurrentVariableId] = useState(null);
+  
   const [selection, setSelection] = useState({ start: 0, end: 0 });
   const [webhookUrl, setWebhookUrl] = useState('https://webhook.site/your-unique-url');
   const [isWebhookConfigured, setIsWebhookConfigured] = useState(false);
 
 
+  const [selectedText, setSelectedText] = useState('');
+  const emailContentRef = useRef(null);
   const handleTextSelect = () => {
     if (emailContentRef.current) {
       const textarea = emailContentRef.current;
@@ -52,22 +49,18 @@ Expected delivery: 3-5 business days`);
         setSelectedText(selected);
         setSelection({ start: selStart, end: selEnd });
       }
+      else {
+        setSelectedText('');
+      }
     }
   };
 
   const handleApplySelection = (id) => {
-      </div>
+    if (selectedText) {
       setVariables(
-          variable.id === id
-        <motion.div
-            ? {
-                ...variable,
-                value: selectedText,
-          className="mt-8 card"
-        >
-            } : variable
+        variables.map(variable =>
+          variable.id === id ? { ...variable, value: selectedText, selectionStart: selection.start, selectionEnd: selection.end } : variable
         )
-          </h3>
       );
       setCurrentVariableId(null);
     } else {
@@ -188,13 +181,12 @@ Expected delivery: 3-5 business days`);
         >
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <EmailIcon className="text-primary" size={22} />
+              <EmailIcon className="text-primary" size={22} /> 
               <h3 className="text-xl font-bold">Email Content</h3>
             </div>
             <div className="flex gap-2">
               <button 
                 onClick={() => {
-                  // Reset the email content to test different scenarios
                   setEmailContent(`From: shipping@example.com
 To: you@parsemail.app
 Subject: Shipping Confirmation
@@ -208,9 +200,8 @@ Tracking: USPS1234567890
 Amount: $89.95
 
 Expected delivery: 3-5 business days
-`);
+`); 
                  }}
-                }}
                 className="text-xs px-2 py-1 rounded bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600"
               >
                 Load Example
@@ -218,10 +209,10 @@ Expected delivery: 3-5 business days
             </div>
 
           
-          <div className="text-sm text-surface-500 dark:text-surface-400 mb-2">
+          </div>
+          <div className="text-sm text-surface-500 dark:text-surface-400 mb-2"> 
             Select text in the email to extract data
-
-          
+          </div>
           <div className="relative">
             <textarea
               ref={emailContentRef}
@@ -230,8 +221,7 @@ Expected delivery: 3-5 business days
               onMouseUp={handleTextSelect}
               onKeyUp={handleTextSelect}
               className="w-full h-[350px] font-mono text-sm p-3 border border-surface-200 dark:border-surface-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none bg-white dark:bg-surface-900 transition-all-sm"
-
-            
+            />
             {selectedText && (
               <div className="absolute bottom-4 right-4 bg-white dark:bg-surface-800 p-2 rounded-lg shadow-lg border border-surface-200 dark:border-surface-700">
                 <div className="flex items-center gap-2 mb-2">
@@ -241,9 +231,8 @@ Expected delivery: 3-5 business days
                 <div className="flex gap-2">
                   {currentVariableId ? (
                     <button
-                       className="px-2 py-1 text-xs rounded bg-primary text-white flex items-center gap-1"
-                    >
-                    >
+                      onClick={() => handleApplySelection(currentVariableId)}
+                      className="px-2 py-1 text-xs rounded bg-primary text-white flex items-center gap-1"
                       <CheckIcon size={14} /> Apply
                     </button>
                   ) : (
@@ -256,7 +245,7 @@ Expected delivery: 3-5 business days
             )}
           </div>
 
-        
+        </motion.div>
         <motion.div
           initial={{ opacity: 0, x: 10 }}
           animate={{ opacity: 1, x: 0 }}
@@ -275,9 +264,9 @@ Expected delivery: 3-5 business days
               >
                 <PlusIcon size={18} />
               </button>
+            </div>
 
-            
-            <div className="space-y-4 max-h-[280px] overflow-y-auto pr-2 scrollbar-hide">
+            <div className="space-y-4 max-h-[280px] overflow-y-auto pr-2 scrollbar-hide"> 
               {variables.map((variable) => (
                 <div 
                   key={variable.id}
@@ -295,9 +284,9 @@ Expected delivery: 3-5 business days
                         onChange={(e) => updateVariableName(variable.id, e.target.value)}
                         className="w-full px-2 py-1 text-sm border border-surface-200 dark:border-surface-700 rounded focus:ring-1 focus:ring-primary focus:border-transparent bg-white dark:bg-surface-900 transition-all-sm"
                       />
+                    </div>
 
-                    
-                    <div className="w-[120px]">
+                    <div className="w-[120px]"> 
                       <label htmlFor={`type-${variable.id}`} className="text-xs text-surface-500 mb-1 block">
                         Type
                       </label>
@@ -313,9 +302,9 @@ Expected delivery: 3-5 business days
                         <option value="date">Date</option>
                       </select>
                     </div>
+                  </div>
 
-                  
-                  <div className="flex items-center justify-between mt-3">
+                  <div className="flex items-center justify-between mt-3"> 
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => setCurrentVariableId(variable.id)}
@@ -324,26 +313,26 @@ Expected delivery: 3-5 business days
                           : 'bg-surface-100 dark:bg-surface-700 hover:bg-surface-200 dark:hover:bg-surface-600'}`}
                       >
                         Select
+                      </button>
 
-                      
                       {variable.value && (
                         <div className="text-xs px-1.5 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full font-medium">
                           Set
                         </div>
                       )}
+                    </div>
 
-                    
                     <button
                       onClick={() => removeVariable(variable.id)}
                       className="p-1 text-surface-500 hover:text-red-500"
                     >
                       <TrashIcon size={16} />
                     </button>
+                  </div>
 
-                  
                   {variable.value && (
                     <div className="mt-1.5 text-xs bg-surface-100 dark:bg-surface-700 p-1.5 rounded font-mono">
-                      {variable.value}
+                      {variable.value} 
                     </div>
                   )}
                 </div>
@@ -359,8 +348,8 @@ Expected delivery: 3-5 business days
               </button>
             </div>
 
-          
-          <div className="card-neu">
+          </div>
+          <div className="card-neu"> 
             <div className="flex items-center gap-2 mb-3">
               <SendIcon className="text-accent" size={22} />
               <h3 className="text-xl font-bold">Webhook Configuration</h3>
@@ -379,20 +368,20 @@ Expected delivery: 3-5 business days
                 className="w-full px-3 py-2 border border-surface-200 dark:border-surface-700 rounded focus:ring-1 focus:ring-primary focus:border-transparent bg-white dark:bg-surface-900 transition-all-sm"
                 disabled={isWebhookConfigured}
               />
+            </div>
 
             {isWebhookConfigured ? (
-              <div className="mb-4 p-3 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-lg flex items-center gap-2">
               <div className="mb-4 p-3 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-lg flex items-center gap-2">
                 <CheckIcon size={18} />
                 <span>Webhook configured successfully!</span>
               </div>
             ) : (
-                onClick={handleSubmitWebhook}
+              <button
+                onClick={handleSubmitWebhook} 
                 className="w-full btn-accent flex items-center justify-center gap-2 transition-all-sm"
               >
-                <CommandIcon size={16} /> Configure Webhook
-                <CommandIcon size={18} /> Configure Webhook
-              </button>
+                <CommandIcon size={18} /> Configure Webhook 
+              </button> 
 
             
             {isWebhookConfigured && (
@@ -401,15 +390,14 @@ Expected delivery: 3-5 business days
                 <div className="mt-2 p-3 bg-surface-100 dark:bg-surface-700 rounded-lg">
                   <pre className="text-xs overflow-auto">
 {`{
-{`{
   "timestamp": "${new Date().toISOString()}",
   "email": {
     "from": "orders@example.com",
     "subject": "Your Order #12345 has shipped!"
   },
-    ${variables.map(v => `"${v.name}": "${v.value || '(not set)'}""`).join(',\n    ')}
-${variables.map(v => `    "${v.name}": "${v.value || '(not set)'}"`).join(',\n')}
+${variables.map(v => `    "${v.name}": "${v.value || '(not set)'}"`).join(',\n')} 
   }
+}`}
 }`}
                   </pre>
                 </div>
@@ -418,20 +406,16 @@ ${variables.map(v => `    "${v.name}": "${v.value || '(not set)'}"`).join(',\n')
           </div>
         </motion.div>
 
-      
-        <motion.div
       {variables.some(v => v.value) && (
+        <motion.div
           animate={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3, delay: 0.3 }}
-        >
           className="mt-8 card"
+        >
           <h3 className="text-xl font-bold mb-4">
             Email Preview with Highlighted Variables
-          <div
-          
-            className="font-mono text-sm p-4 border border-surface-200 dark:border-surface-700 rounded-lg bg-white dark:bg-surface-900 whitespace-pre-wrap"
-            dangerouslySetInnerHTML={{ __html: getHighlightedContent() }}
+          </h3>
           />
         </motion.div>
       )}
