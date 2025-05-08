@@ -348,13 +348,11 @@ Expected delivery: 3-5 business days
           </div>
           <div className="card-neu"> 
           <div className="card-neu">
-            <div className="flex items-center gap-2 mb-4">
               <h3 className="text-xl font-bold">Webhook Configuration</h3>
 
             </div>
               <div className="mb-4">
             <div className="mb-4">
-              <label htmlFor="webhook-url" className="text-sm text-surface-500 mb-1 block">
                 Webhook URL
               </label>
               <input
@@ -370,7 +368,6 @@ Expected delivery: 3-5 business days
               {isWebhookConfigured ? (
             {isWebhookConfigured ? (
               <div className="mb-4 p-3 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-lg flex items-center gap-2">
-                <CheckIcon size={18} />
                 <span>Webhook configured successfully!</span>
               </div>
             ) : (
@@ -382,7 +379,6 @@ Expected delivery: 3-5 business days
               </button> 
             )}
             
-            {isWebhookConfigured && (
               <div className="mt-4 text-sm text-surface-600 dark:text-surface-300">
                 <p>Your parsed data will be sent to the configured webhook whenever a new email is received.</p>
                 <div className="mt-2 p-3 bg-surface-100 dark:bg-surface-700 rounded-lg">
@@ -398,7 +394,7 @@ ${variables.map(v => `    "${v.name}": "${v.value || '(not set)'}"`).join(',\n')
                   </pre>
                 </div>
               </div>
-            )}
+          </div>
           </div>
         </motion.div>
 
