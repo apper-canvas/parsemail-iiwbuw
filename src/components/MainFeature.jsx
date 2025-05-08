@@ -350,59 +350,53 @@ Expected delivery: 3-5 business days
               <SendIcon className="text-accent" size={22} />
               <h3 className="text-xl font-bold">Webhook Configuration</h3>
 
-            </div>
-            
-            <div className="mb-4">
-              <label htmlFor="webhook-url" className="text-sm text-surface-500 mb-1 block">
-                Webhook URL
-              </label>
-              <input
-                id="webhook-url"
-                type="url"
-                value={webhookUrl}
-                onChange={(e) => setWebhookUrl(e.target.value)}
-                placeholder="https://webhook.site/your-unique-url"
-                className="w-full px-3 py-2 border border-surface-200 dark:border-surface-700 rounded focus:ring-1 focus:ring-primary focus:border-transparent bg-white dark:bg-surface-900 transition-all-sm"
-                disabled={isWebhookConfigured}
-              />
-            </div>
+              <div className="mb-4">
+                <label htmlFor="webhook-url" className="text-sm text-surface-500 mb-1 block">
+                  Webhook URL
+                </label>
+                <input
+                  id="webhook-url"
+                  type="url"
+                  value={webhookUrl}
+                  onChange={(e) => setWebhookUrl(e.target.value)}
+                  placeholder="https://webhook.site/your-unique-url"
+                  className="w-full px-3 py-2 border border-surface-200 dark:border-surface-700 rounded focus:ring-1 focus:ring-primary focus:border-transparent bg-white dark:bg-surface-900 transition-all-sm"
+                  disabled={isWebhookConfigured}
+                />
+              </div>
 
-            {isWebhookConfigured ? (
-              <div className="mb-4 p-3 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-lg flex items-center gap-2">
-                <CheckIcon size={18} />
-                <span>Webhook configured successfully!</span>
-              </div>
-            ) : (
-              <button
-                onClick={handleSubmitWebhook} 
-                className="w-full btn-accent flex items-center justify-center gap-2 transition-all-sm"
-              >
-                <CommandIcon size={18} /> Configure Webhook 
-              </button> 
-            )}
-            
-            {/* Wrap adjacent elements in a fragment */}
-            <>
-              <div>
-              {isWebhookConfigured && (
-              <div className="mt-4 text-sm text-surface-600 dark:text-surface-300">
-                <p>Your parsed data will be sent to the configured webhook whenever a new email is received.</p>
-                <div className="mt-2 p-3 bg-surface-100 dark:bg-surface-700 rounded-lg">
-                  <pre className="text-xs overflow-auto">
-{`{
-  "timestamp": "${new Date().toISOString()}",
-  "email": {
-    "from": "orders@example.com",
-    "subject": "Your Order #12345 has shipped!"
-${variables.map(v => `    "${v.name}": "${v.value || '(not set)'}"`).join(',\n')} 
-}`}
-}`}
-                  </pre>
+              {isWebhookConfigured ? (
+                <div className="mb-4 p-3 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-lg flex items-center gap-2">
+                  <CheckIcon size={18} />
+                  <span>Webhook configured successfully!</span>
                 </div>
-              </div>
+              ) : (
+                <button
+                  onClick={handleSubmitWebhook} 
+                  className="w-full btn-accent flex items-center justify-center gap-2 transition-all-sm"
+                >
+                  <CommandIcon size={18} /> Configure Webhook 
+                </button> 
+              )}
+              
+              {isWebhookConfigured && (
+                <div className="mt-4 text-sm text-surface-600 dark:text-surface-300">
+                  <p>Your parsed data will be sent to the configured webhook whenever a new email is received.</p>
+                  <div className="mt-2 p-3 bg-surface-100 dark:bg-surface-700 rounded-lg">
+                    <pre className="text-xs overflow-auto">
+  {`{
+    "timestamp": "${new Date().toISOString()}",
+    "email": {
+      "from": "orders@example.com",
+      "subject": "Your Order #12345 has shipped!"
+  ${variables.map(v => `    "${v.name}": "${v.value || '(not set)'}"`).join(',\n')} 
+  }`}
+  }`}
+                    </pre>
+                  </div>
+                </div>
+              )}
             </div>
-            </>
-            )}
           </div>
         </motion.div>
 
