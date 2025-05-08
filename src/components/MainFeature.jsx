@@ -229,7 +229,7 @@ Expected delivery: 3-5 business days
                     <button
                       onClick={() => handleApplySelection(currentVariableId)}
                     >
-                      <CheckIcon size={14} /> Apply
+                      <CheckIcon size={14} />
                       <CheckIcon size={14} /> Apply
                     </button>
                   ) : (
@@ -347,7 +347,6 @@ Expected delivery: 3-5 business days
 
           </div>
           <div className="card-neu"> 
-            <div className="flex items-center gap-2 mb-3">
               <SendIcon className="text-accent" size={22} />
               <h3 className="text-xl font-bold">Webhook Configuration</h3>
 
@@ -379,11 +378,13 @@ Expected delivery: 3-5 business days
                 className="w-full btn-accent flex items-center justify-center gap-2 transition-all-sm"
               >
                 <CommandIcon size={18} /> Configure Webhook 
-            )}
               </button> 
-            <div>
+            )}
             
-            {isWebhookConfigured && (
+            {/* Wrap adjacent elements in a fragment */}
+            <>
+              <div>
+              {isWebhookConfigured && (
               <div className="mt-4 text-sm text-surface-600 dark:text-surface-300">
                 <p>Your parsed data will be sent to the configured webhook whenever a new email is received.</p>
                 <div className="mt-2 p-3 bg-surface-100 dark:bg-surface-700 rounded-lg">
@@ -393,7 +394,6 @@ Expected delivery: 3-5 business days
   "email": {
     "from": "orders@example.com",
     "subject": "Your Order #12345 has shipped!"
-  ${variables.map(v => `"${v.name}": "${v.value || '(not set)'}"`).join(',\n  ')} 
 ${variables.map(v => `    "${v.name}": "${v.value || '(not set)'}"`).join(',\n')} 
 }`}
 }`}
@@ -401,6 +401,7 @@ ${variables.map(v => `    "${v.name}": "${v.value || '(not set)'}"`).join(',\n')
                 </div>
               </div>
             </div>
+            </>
             )}
           </div>
         </motion.div>
@@ -414,7 +415,7 @@ ${variables.map(v => `    "${v.name}": "${v.value || '(not set)'}"`).join(',\n')
         >
           <h3 className="text-xl font-bold mb-4">
             Email Preview with Highlighted Variables
-          />
+          </h3>
         </motion.div>
       )}
     </div>
