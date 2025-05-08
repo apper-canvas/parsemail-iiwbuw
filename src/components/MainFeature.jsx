@@ -229,8 +229,8 @@ Expected delivery: 3-5 business days
                     <button
                       onClick={() => handleApplySelection(currentVariableId)}
                     >
-                      <CheckIcon size={14} />
-                      <CheckIcon size={14} /> Apply
+                      <CheckIcon size={14} className="mr-1" />
+                      Apply
                     </button>
                   ) : (
                     <div className="text-xs text-surface-500">
@@ -346,14 +346,12 @@ Expected delivery: 3-5 business days
             </div>
 
           </div>
-          <div className="card-neu"> 
-          <div className="card-neu">
-              <h3 className="text-xl font-bold">Webhook Configuration</h3>
+            <h3 className="text-xl font-bold mb-4">Webhook Configuration</h3>
 
-            </div>
               <div className="mb-4">
-            <div className="mb-4">
+              <label htmlFor="webhook-url" className="text-sm mb-1 block">
                 Webhook URL
+              </label>
               </label>
               <input
                 id="webhook-url"
@@ -364,9 +362,9 @@ Expected delivery: 3-5 business days
                 className="w-full px-3 py-2 border border-surface-200 dark:border-surface-700 rounded focus:ring-1 focus:ring-primary focus:border-transparent bg-white dark:bg-surface-900 transition-all-sm"
                 disabled={isWebhookConfigured}
               />
-            </div>
               {isWebhookConfigured ? (
             {isWebhookConfigured ? (
+                <CheckIcon size={18} />
               <div className="mb-4 p-3 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-lg flex items-center gap-2">
                 <span>Webhook configured successfully!</span>
               </div>
@@ -378,8 +376,7 @@ Expected delivery: 3-5 business days
                 <CommandIcon size={18} /> Configure Webhook 
               </button> 
             )}
-            
-              <div className="mt-4 text-sm text-surface-600 dark:text-surface-300">
+            <div className="mt-4 text-sm text-surface-600 dark:text-surface-300">
                 <p>Your parsed data will be sent to the configured webhook whenever a new email is received.</p>
                 <div className="mt-2 p-3 bg-surface-100 dark:bg-surface-700 rounded-lg">
                   <pre className="text-xs overflow-auto">
@@ -393,8 +390,7 @@ ${variables.map(v => `    "${v.name}": "${v.value || '(not set)'}"`).join(',\n')
 }`}
                   </pre>
                 </div>
-              </div>
-          </div>
+            </div>
           </div>
         </motion.div>
 
