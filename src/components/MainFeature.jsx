@@ -12,26 +12,22 @@ import {
 } from 'lucide-react';
 
 export default function MainFeature() {
+  const [variables, setVariables] = useState([
+    { id: 1, name: 'orderNumber', type: 'number', value: '', selectionStart: 0, selectionEnd: 0 },
+    { id: 2, name: 'trackingId', type: 'string', value: '', selectionStart: 0, selectionEnd: 0 },
+  ]);
+  const [nextId, setNextId] = useState(3);
+  const [currentVariableId, setCurrentVariableId] = useState(null);
   const [emailContent, setEmailContent] = useState(`From: shipping@example.com
 To: you@parsemail.app
 Subject: Shipping Confirmation
 
 Dear Valued Customer,
-            </div>
-
 
 Tracking: USPS1234567890
 Amount: $89.95
 
 Expected delivery: 3-5 business days`);
-              <button
-
-    { id: 1, name: 'orderNumber', type: 'number', value: '', selectionStart: 0, selectionEnd: 0 },
-  ]);
-
-    { id: 2, name: 'trackingId', type: 'string', value: '', selectionStart: 0, selectionEnd: 0 },
-            )}
-  
   const [selection, setSelection] = useState({ start: 0, end: 0 });
   const [webhookUrl, setWebhookUrl] = useState('https://webhook.site/your-unique-url');
   const [isWebhookConfigured, setIsWebhookConfigured] = useState(false);
@@ -232,7 +228,8 @@ Expected delivery: 3-5 business days
                   {currentVariableId ? (
                     <button
                       onClick={() => handleApplySelection(currentVariableId)}
-                      className="px-2 py-1 text-xs rounded bg-primary text-white flex items-center gap-1"
+                    >
+                      <CheckIcon size={14} /> Apply
                       <CheckIcon size={14} /> Apply
                     </button>
                   ) : (
@@ -354,6 +351,7 @@ Expected delivery: 3-5 business days
               <SendIcon className="text-accent" size={22} />
               <h3 className="text-xl font-bold">Webhook Configuration</h3>
 
+            </div>
             
             <div className="mb-4">
               <label htmlFor="webhook-url" className="text-sm text-surface-500 mb-1 block">
@@ -381,8 +379,9 @@ Expected delivery: 3-5 business days
                 className="w-full btn-accent flex items-center justify-center gap-2 transition-all-sm"
               >
                 <CommandIcon size={18} /> Configure Webhook 
+            )}
               </button> 
-
+            <div>
             
             {isWebhookConfigured && (
               <div className="mt-4 text-sm text-surface-600 dark:text-surface-300">
@@ -394,14 +393,14 @@ Expected delivery: 3-5 business days
   "email": {
     "from": "orders@example.com",
     "subject": "Your Order #12345 has shipped!"
-  },
+  ${variables.map(v => `"${v.name}": "${v.value || '(not set)'}"`).join(',\n  ')} 
 ${variables.map(v => `    "${v.name}": "${v.value || '(not set)'}"`).join(',\n')} 
-  }
 }`}
 }`}
                   </pre>
                 </div>
               </div>
+            </div>
             )}
           </div>
         </motion.div>
@@ -415,7 +414,6 @@ ${variables.map(v => `    "${v.name}": "${v.value || '(not set)'}"`).join(',\n')
         >
           <h3 className="text-xl font-bold mb-4">
             Email Preview with Highlighted Variables
-          </h3>
           />
         </motion.div>
       )}
